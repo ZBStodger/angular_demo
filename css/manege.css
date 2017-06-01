@@ -1,0 +1,53 @@
+*{
+	list-style: none;
+	font-size: 14px;
+}
+.r1{
+	background: #23527c;
+	height:120px;	
+	font-weight: bold;
+	text-align: center;
+	line-height: 120px;
+	color: #fff;
+}
+.r1>div{
+	font-size: 42px;
+}
+.r2>div{
+	height: 80px;
+	// background: #337ab7;
+	font-size: 20px;
+	padding-top: 25px;
+}
+.r2 ol li{
+	margin-top: 10px;
+	font-size: 16px;
+}
+.r2 ol li input{
+	padding-left: 10px;
+	outline: none;
+	width: 70%;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.r3{
+	background: orange;
+	height: 30px;
+}
+.r3>ul li{
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.r4>ul{
+	background: purple;
+	margin-top: 10px;
+	height: 40px;
+	color: #fff;
+	border-radius: 7px;
+	line-height: 40px;
+}
+.r4 li{
+	cursor: pointer;
+}

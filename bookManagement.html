@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>bootstrap后台管理</title>
+	
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./css/manege.css">
+
+</head>
+<body ng-app="myApp">		
+	<div class="container" ng-controller="controller01">
+		<div class="row r1">
+			<div class="col-lg-12 tit1">
+				图书管理后台系统
+			</div>	
+		</div>
+		<div class="row r2">
+			<div class="col-lg-1">
+				<div class="dropdown">
+				    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" >{{searchMethod}}
+				        <span class="caret"></span>
+				    </button>
+				    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				        <li role="presentation">
+				            <a role="menuitem" tabindex="-1" href="#" ng-click="search('bookName')">书名检索</a>
+				        </li>
+				        <li role="presentation">
+				            <a role="menuitem" tabindex="-1" href="#" ng-click="search('author')">作者检索</a>
+				        </li>
+				        <li role="presentation">
+				            <a role="menuitem" tabindex="-1" href="#" ng-click="search('id')">序号检索</a>
+				        </li>
+				       
+				    </ul>
+				</div>
+				
+			</div>
+			<div class="col-lg-9">
+				<div class="input-group">
+					
+					<input type="text" class="form-control" placeholder="请输入书名/作者/序号搜索" ng-model='val' />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal" ng-click="addBook(1)">
+					新增书籍
+				</button>
+				<!-- 模态框（Modal） -->
+				
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									{{title01}}
+								</h4>								
+							</div>
+							
+							<div class="modal-body" ng-show=bool2>
+								<ol>
+									<li><span>书名：</span><input type="text" placeholder="请输入书名" ng-model='na1' /></li>
+									<li><span>作者：</span><input type="text" placeholder="请输入作者" ng-model='au1' /></li>
+									<li><span>售价：</span><input type="text" placeholder="请输入价格" ng-model='pr1' /></li>
+								</ol>
+							</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">{{cancle}}
+								</button>
+								<button type="button" class="btn btn-primary" ng-click="deliver()" data-dismiss="modal">
+									{{OK}}
+								</button>
+							</div>
+							
+
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
+				
+			</div>	
+		</div>
+
+		<div class="row r3">
+			
+			<ul class="col-lg-12">
+				<li class="col-lg-2 " >序号</li>
+				<li class="col-lg-2 " ng-click="order('bookName')">书名<span ng-if="boo">↓</span>
+				<span ng-if="!boo">↑</span></li>
+				<li class="col-lg-2 " ng-click="order('author')">作者<span ng-if="boo">↓</span>
+				<span ng-if="!boo">↑</span></li>
+				<li class="col-lg-2 " ng-click="order('price')">价格<span ng-if="boo">↓</span>
+				<span ng-if="!boo">↑</span></li>
+				<li class="col-lg-2 " >编辑</li>
+				<li class="col-lg-2 " >删除</li>
+			</ul>
+		</div>
+		<div class="row r4">
+			<ul class="col-lg-12" ng-repeat="i in book | filter:fn(cs1) | orderBy:sx:bool" >
+				<li class="col-lg-2 " >{{$index+1}}</li>
+				<li class="col-lg-2 " >《{{i.bookName}}》</li>
+				<li class="col-lg-2 ">{{i.author}}</li>
+				<li class="col-lg-2 "><span>￥：</span><span>{{i.price}}</span></li>
+				<li class="col-lg-2 " data-toggle="modal" data-target="#myModal" ng-click="addBook(3,i.id)">编辑</li>
+				<li class="col-lg-2 "  data-toggle="modal" data-target="#myModal" ng-click="addBook(2,i.id)">
+					删除</li>
+			</ul>			
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src='./js/jquery-1.12.3.js'></script>
+	<script type="text/javascript" src='./js/bootstrap.js'></script>
+	<script type="text/javascript" src='./js/angular1.5.7.js'></script>
+	<script type="text/javascript" src='./js/bms.js'></script>
+</body>
+</html>
